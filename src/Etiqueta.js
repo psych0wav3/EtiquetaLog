@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './etiqueta.css'
 
-const Etiqueta = () => {
 
-  const [dados, SetDados] = useState([])
+const Etiqueta  = () => {
 
-  useEffect(() => {
-    var data = localStorage.getItem('dados')
-    data = JSON.parse(data)
-    SetDados(data)
-  }, [])
+    const [data, setData] = useState([])
 
-   console.log(dados)
+    useEffect(() => {
+       async function getData() {
+        var dados = await localStorage.getItem('dados')
+        dados =  await JSON.parse(dados)
+       setData(dados)
+       }
+       getData()
+    }, [])
 
-  return(
-    <div>
-      {dados.map(dados => {
-        return(
-          <div key={dados.codInt} className="container">
-            <p className="inte">{dados.codInt}</p>
-            <p className="inte">{dados.bitola}</p>
-            <p className="inte">{dados.tonalidade}</p>
-            <p className="inte">{dados.quantidade}</p>
-          </div>
-        )
-      })}
-    </div>
-  )
+    console.log(data)
+
+    return(
+        <div>
+            <div className="container">
+                
+                        <div className="card">
+                            <p className="inte">{data[0]}</p>
+                            <p className="inte">{data[1]}</p>
+                            <p className="inte">{data[2]}</p>
+                            <p className="inte">{data[3]}</p>
+                        </div>
+            </div>
+        </div>
+    )
 }
 
 export default Etiqueta

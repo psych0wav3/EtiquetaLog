@@ -14,7 +14,7 @@ const Main = () => {
   const history = useHistory()
 
   function handleData() {
-    var data = {codInt: interno, bitola: bitola, tonalidade: tonalidade, quantidade: quantidade}
+    var data = [interno, bitola, tonalidade, quantidade]
     data = JSON.stringify(data)
     localStorage.setItem('dados', data)
     history.push('/etiqueta')
